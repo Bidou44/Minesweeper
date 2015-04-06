@@ -4,10 +4,9 @@ namespace MinesweeperLib.Cells
 	{	
 		protected CellValueBase()
 		{
-			this.NumberOfBombAround = null;
 		}
 
-		public int? NumberOfBombAround { get; protected set; }
+		public abstract int? NumberOfBombAround { get; }
 
 		public bool IsBomb
 		{

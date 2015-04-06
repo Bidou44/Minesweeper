@@ -5,7 +5,6 @@
 		public Cell(Coordinate coordinate, CellValueBase cellValue)
 		{
 			this.Coordinate = coordinate;
-
 			this.CellValue = cellValue;
 			this.IsPlayed = false;
 		}

@@ -4,6 +4,8 @@ namespace MinesweeperLib.Cells
 
 	public class CellValue : CellValueBase
 	{
+		private readonly byte numberOfBombAround = 0;
+
 		public CellValue(byte numberOfBombAround)
 		{
 			if (numberOfBombAround > 8)
@@ -11,7 +13,12 @@ namespace MinesweeperLib.Cells
 				throw new ArgumentException("Value must be between 0 and 8", "numberOfBombAround");
 			}
 
-			this.NumberOfBombAround = numberOfBombAround;
+			this.numberOfBombAround = numberOfBombAround;
+		}
+
+		public override int? NumberOfBombAround
+		{
+			get { return this.numberOfBombAround; }
 		}
 	}
 }

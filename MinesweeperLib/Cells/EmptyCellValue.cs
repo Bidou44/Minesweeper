@@ -4,6 +4,11 @@ namespace MinesweeperLib.Cells
 	{
 		public EmptyCellValue()
 		{	
-		}	
+		}
+
+		public override int? NumberOfBombAround
+		{
+			get { return null; }
+		}
 	}
 }

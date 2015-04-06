@@ -4,7 +4,11 @@ namespace MinesweeperLib.Cells
 	{
 		public BombCellValue()
 		{
-			this.NumberOfBombAround = null;
+		}
+
+		public override int? NumberOfBombAround
+		{
+			get { return null; }
 		}
 	}
 }
