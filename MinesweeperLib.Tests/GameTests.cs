@@ -21,8 +21,7 @@
 			Game game = new Game(board);
 
 			Assert.AreEqual(game.GameConfiguration, gameConfiguration);
-			Assert.IsFalse(game.IsFinished);
-			Assert.IsFalse(game.IsWinner);
+			Assert.AreEqual(game.GameState, GameState.Playing);
 		}
 
 		[TestMethod]
@@ -34,8 +33,7 @@
 
 			game.Play(Bombs.FirstOrDefault());
 
-			Assert.IsFalse(game.IsWinner);
-			Assert.IsTrue(game.IsFinished);
+			Assert.AreEqual(game.GameState, GameState.FinishedLost);
 		}
 
 		[TestMethod]
@@ -48,8 +46,7 @@
 			Coordinate play = new Coordinate(0, 0);
 			game.Play(play);
 
-			Assert.IsFalse(game.IsWinner);
-			Assert.IsFalse(game.IsFinished);
+			Assert.AreEqual(game.GameState, GameState.Playing);
 			Assert.AreEqual(3, game.Board[play].CellValue.NumberOfBombAround.Value);
 		}
 
@@ -69,8 +66,7 @@
 			Coordinate play = new Coordinate(0, 0);
 			game.Play(play);
 
-			Assert.IsTrue(game.IsWinner);
-			Assert.IsTrue(game.IsFinished);
+			Assert.AreEqual(game.GameState, GameState.FinishedWon);
 			Assert.AreEqual(3, game.Board[play].CellValue.NumberOfBombAround.Value);
 		}
 

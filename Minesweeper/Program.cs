@@ -27,7 +27,7 @@
 					minesweeper = new Minesweeper(gameConfiguration);
 				}
 
-				while (!minesweeper.IsFinished)
+				while (minesweeper.GameState == GameState.Playing)
 				{
 					Console.WriteLine("Please enter next move, for example: 4;3");
 					string line = Console.ReadLine();
@@ -52,7 +52,7 @@
 					Console.WriteLine();
 				}
 
-				Console.WriteLine("Game finished, you " + (minesweeper.IsWinner ? "win!" : "loose!"));
+				Console.WriteLine("Game finished, you " + (minesweeper.GameState == GameState.FinishedWon ? "win!" : "loose!"));
 				Console.WriteLine("Hit 'R' or 'r' to restart, any other key to exit");
 				
 				input = Console.ReadLine();

@@ -27,13 +27,12 @@
 
 			this.cellValueBaseFactory = cellValueBaseFactory;
 			this.gameConfiguration = gameConfiguration;
+
 			this.Initialize();
 		}
 
 		public Cell[,] CreateGame()
 		{
-			this.Initialize();
-
 			Size gameSize = this.gameConfiguration.Level.GameSize;
 
 			for (int i = 0; i < gameSize.Width; i++)
@@ -43,6 +42,7 @@
 					Coordinate current = new Coordinate(i, j);
 					CellValueBase cellValue = this.cellValueBaseFactory.CreateCell(current);
 					Cell cell = new Cell(current, cellValue);
+
 					this.cells[i, j] = cell;
 				}
 			}

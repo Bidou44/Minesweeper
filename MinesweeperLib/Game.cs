@@ -8,52 +8,34 @@
 
 	public class Game
 	{
-		private readonly IBoard board = null;
-
-		private bool? isWinner = null;
 		private int playedCells = 0;
 
 		public Game(IBoard board)
 		{
-			this.board = board;
+			this.Board = board;
+			this.GameState = GameState.Playing;
 		}
-
-		public bool IsFinished { get; private set; }
-
-		public bool IsWinner { get { return this.isWinner == true; } }
 
 		public GameConfiguration GameConfiguration
 		{
-			get { return this.board.GameConfiguration; }
+			get { return this.Board.GameConfiguration; }
 		}
+
+		public GameState GameState { get; private set; }
+
+		public IBoard Board { get; private set; }
 
 		public void Play(Coordinate coord)
 		{
-			if (!this.IsFinished)
+			if (this.GameState == GameState.Playing)
 			{
-				Cell cell = this.board[coord];
+				Cell cell = this.Board[coord];
 				if (!cell.IsPlayed)
 				{
 					this.Play(cell);
-
-					Size gameSize = this.GameConfiguration.Level.GameSize;
-					if (this.playedCells >= gameSize.Width * gameSize.Height - this.GameConfiguration.Level.NumberOfBombs)
-					{
-						this.FinishGame(isWinner != false);
-					}
+					this.CheckIfGameIsOver();
 				}
 			}
-		}
-
-		internal IBoard Board
-		{
-			get { return this.board; }
-		}
-
-		private void FinishGame(bool hasWin)
-		{
-			this.IsFinished = true;
-			this.isWinner = hasWin;
 		}
 
 		private void Play(Cell cell)
@@ -61,7 +43,7 @@
 			this.SetPlayed(cell);
 			if (cell.CellValue.IsBomb)
 			{
-				this.FinishGame(false);
+				this.FinishGame(GameState.FinishedLost);
 			}
 			else
 			{
@@ -78,6 +60,20 @@
 			}
 		}
 
+		private void CheckIfGameIsOver()
+		{
+			Size gameSize = this.GameConfiguration.Level.GameSize;
+			if (this.playedCells >= gameSize.Width * gameSize.Height - this.GameConfiguration.Level.NumberOfBombs)
+			{
+				this.FinishGame(this.GameState == GameState.FinishedLost ? GameState.FinishedLost : GameState.FinishedWon);
+			}
+		}
+
+		private void FinishGame(GameState gameState)
+		{
+			this.GameState = gameState;
+		}
+
 		private void SetPlayed(Cell cell)
 		{
 			if (!cell.IsPlayed)
@@ -89,7 +85,7 @@
 
 		private void CheckNeighbor(Coordinate neighbor)
 		{
-			Cell neighborCell = this.board[neighbor];
+			Cell neighborCell = this.Board[neighbor];
 			if (!neighborCell.CellValue.IsBomb)
 			{
 				if (neighborCell.CellValue.NumberOfBombAround.HasValue)
@@ -107,7 +103,7 @@
 
 		public void Dump()
 		{
-			for (int i = -2; i < this.board.Size.Height; i++)
+			for (int i = -2; i < this.Board.Size.Height; i++)
 			{
 				Console.WriteLine();
 				if (i >= 0)
@@ -115,7 +111,7 @@
 					Console.Write(i + "║");				
 				}
 
-				for (int j = 0; j < this.board.Size.Width; j++)
+				for (int j = 0; j < this.Board.Size.Width; j++)
 				{
 					if (i == -2)
 					{
@@ -127,7 +123,7 @@
 					}
 					else
 					{
-						Cell cell = this.board[new Coordinate(j, i)];
+						Cell cell = this.Board[new Coordinate(j, i)];
 						CellValueBase cellValue = cell.CellValue;
 						string symbol = !cell.IsPlayed ? "░" : (cellValue.IsBomb ? "B" : (cellValue.NumberOfBombAround.HasValue ? cellValue.NumberOfBombAround.ToString() : " "));
 						Console.Write(symbol);

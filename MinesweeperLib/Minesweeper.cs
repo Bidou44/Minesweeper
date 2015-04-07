@@ -16,14 +16,9 @@
 			this.Initialize(gameConfiguration);
 		}
 
-		public bool IsFinished
+		public GameState GameState
 		{
-			get { return this.game.IsFinished; }
-		}
-
-		public bool IsWinner
-		{
-			get { return this.game.IsWinner; }
+			get { return this.game.GameState; }
 		}
 
 		public void Play(Coordinate coord)
@@ -40,9 +35,10 @@
 		{
 			// Composition root
 			IEnumerable<Coordinate> bombCoordinates = Randomizer.GetRandomCoordinates(gameConfiguration.Level.GameSize, gameConfiguration.Level.NumberOfBombs);
-			CellValueBaseFactory cellValueBaseFactory = new CellValueBaseFactory(bombCoordinates);
-			GameCreator gameCreator = new GameCreator(cellValueBaseFactory, gameConfiguration, ApplicationConfiguration.Current);
+			ICellValueBaseFactory cellValueBaseFactory = new CellValueBaseFactory(bombCoordinates);
+			IGameCreator gameCreator = new GameCreator(cellValueBaseFactory, gameConfiguration, ApplicationConfiguration.Current);
 			IBoard board = new Board(gameCreator, gameConfiguration);
+
 			this.game = new Game(board);
 		}
 	}

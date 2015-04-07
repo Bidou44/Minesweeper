@@ -9,9 +9,14 @@
 
 		public Size(int width, int height)
 		{
-			if (width < 0 || height < 0)
+			if (width < 0)
 			{
-				throw new ArgumentException();
+				throw new ArgumentException("The width must be a positive number", "width");
+			}
+
+			if (height < 0)
+			{
+				throw new ArgumentException("The height must be a positive number", "height");
 			}
 
 			this.width = width;
