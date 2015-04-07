@@ -1,5 +1,7 @@
-﻿namespace MinesweeperLib.Cells
+﻿namespace MinesweeperLib.GameRules.Cells
 {
+	using MinesweeperLib.Common;
+
 	public class Cell
 	{
 		public Cell(Coordinate coordinate, CellValueBase cellValue)

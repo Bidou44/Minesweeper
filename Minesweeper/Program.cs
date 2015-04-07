@@ -3,7 +3,9 @@
 	using System;
 
 	using MinesweeperLib;
+	using MinesweeperLib.Common;
 	using MinesweeperLib.Configurations;
+	using MinesweeperLib.GameRules;
 
 	public class Program
 	{
@@ -39,12 +41,10 @@
 					}
 					catch (ArgumentException e)
 					{
-						// Log e
 						Console.WriteLine("Invalid move, try again");
 					}
 					catch (Exception e)
 					{
-						// Log e
 						Console.WriteLine("Sorry, an error occured");
 					}
 

@@ -1,9 +1,13 @@
-﻿namespace MinesweeperLib
+﻿namespace MinesweeperLib.GameRules
 {
 	using System;
+	using System.Collections;
+	using System.Collections.Generic;
+	using System.Linq;
 
-	using MinesweeperLib.Cells;
+	using MinesweeperLib.Common;
 	using MinesweeperLib.Configurations;
+	using MinesweeperLib.GameRules.Cells;
 	using MinesweeperLib.Helpers;
 
 	public class Board : IBoard
@@ -41,6 +45,16 @@
 		public GameConfiguration GameConfiguration { get; private set; }
 
 		public Size Size { get; private set; }
+
+		public IEnumerator<Cell> GetEnumerator()
+		{
+			return cells.Cast<Cell>().GetEnumerator();
+		}
+
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			return GetEnumerator();
+		}
 
 		private void Initialize()
 		{

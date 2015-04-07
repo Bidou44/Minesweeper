@@ -1,5 +1,7 @@
 ﻿namespace MinesweeperLib.Configurations
 {
+	using MinesweeperLib.Common;
+
 	public class ApplicationConfiguration : IApplicationConfiguration
 	{
 		private static ApplicationConfiguration applicationConfiguration = null;

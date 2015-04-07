@@ -1,4 +1,4 @@
-﻿namespace MinesweeperLib
+﻿namespace MinesweeperLib.Common
 {
 	using System;
 

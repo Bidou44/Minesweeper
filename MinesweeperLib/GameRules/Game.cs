@@ -1,18 +1,21 @@
-﻿namespace MinesweeperLib
+﻿namespace MinesweeperLib.GameRules
 {
 	using System;
+	using System.Collections.Generic;
 
-	using MinesweeperLib.Cells;
+	using MinesweeperLib.Common;
 	using MinesweeperLib.Configurations;
+	using MinesweeperLib.GameRules.Cells;
 	using MinesweeperLib.Helpers;
 
-	public class Game
+	public class Game : IGame
 	{
 		private int playedCells = 0;
 
-		public Game(IBoard board)
+		public Game(IBoard board, IGameSerializer gameSerializer)
 		{
 			this.Board = board;
+			this.GameSerializer = gameSerializer;
 			this.GameState = GameState.Playing;
 		}
 
@@ -25,6 +28,19 @@
 
 		public IBoard Board { get; private set; }
 
+		public IGameSerializer GameSerializer { get; private set; }
+
+		public static IGame CreateGame(ApplicationConfiguration appConfig, GameConfiguration gameConfiguration, IEnumerable<Coordinate> bombCoordinates)
+		{
+			// Composition root
+			ICellValueBaseFactory cellValueBaseFactory = new CellValueBaseFactory(bombCoordinates);
+			IGameCreator gameCreator = new GameCreator(cellValueBaseFactory, gameConfiguration, appConfig);
+			IBoard board = new Board(gameCreator, gameConfiguration);
+
+			Game game = new Game(board, new GameSerializer());
+			return game;
+		}
+
 		public void Play(Coordinate coord)
 		{
 			if (this.GameState == GameState.Playing)
@@ -36,6 +52,11 @@
 					this.CheckIfGameIsOver();
 				}
 			}
+		}
+
+		public void Save()
+		{
+			this.GameSerializer.Save(this);
 		}
 
 		private void Play(Cell cell)

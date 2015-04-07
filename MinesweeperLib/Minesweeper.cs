@@ -2,18 +2,23 @@
 {
 	using System.Collections.Generic;
 
-	using MinesweeperLib.Cells;
+	using MinesweeperLib.Common;
 	using MinesweeperLib.Configurations;
+	using MinesweeperLib.GameRules;
 	using MinesweeperLib.Helpers;
 
 	// Facade to hide the construction of the game
 	public class Minesweeper
 	{
-		private Game game = null;
+		private readonly GameConfiguration gameConfiguration = null;
+
+		private IGame game = null;
 
 		public Minesweeper(GameConfiguration gameConfiguration)
 		{
-			this.Initialize(gameConfiguration);
+			this.gameConfiguration = gameConfiguration;
+
+			this.Initialize();
 		}
 
 		public GameState GameState
@@ -31,15 +36,12 @@
 			this.game.Dump();
 		}
 
-		private void Initialize(GameConfiguration gameConfiguration)
+		private void Initialize()
 		{
-			// Composition root
-			IEnumerable<Coordinate> bombCoordinates = Randomizer.GetRandomCoordinates(gameConfiguration.Level.GameSize, gameConfiguration.Level.NumberOfBombs);
-			ICellValueBaseFactory cellValueBaseFactory = new CellValueBaseFactory(bombCoordinates);
-			IGameCreator gameCreator = new GameCreator(cellValueBaseFactory, gameConfiguration, ApplicationConfiguration.Current);
-			IBoard board = new Board(gameCreator, gameConfiguration);
+			GameLevel level = this.gameConfiguration.Level;
+			IEnumerable<Coordinate> bombCoordinates = Randomizer.GetRandomCoordinates(level.GameSize, level.NumberOfBombs);
 
-			this.game = new Game(board);
+			this.game = Game.CreateGame(ApplicationConfiguration.Current, this.gameConfiguration, bombCoordinates);
 		}
 	}
 }

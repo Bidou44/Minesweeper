@@ -1,9 +1,10 @@
-﻿namespace MinesweeperLib
+﻿namespace MinesweeperLib.GameRules
 {
 	using System;
 
-	using MinesweeperLib.Cells;
+	using MinesweeperLib.Common;
 	using MinesweeperLib.Configurations;
+	using MinesweeperLib.GameRules.Cells;
 	using MinesweeperLib.Helpers;
 
 	public class GameCreator : IGameCreator

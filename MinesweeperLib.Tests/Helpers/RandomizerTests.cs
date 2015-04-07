@@ -1,5 +1,4 @@
-﻿
-namespace MinesweeperLib.Tests.Helpers
+﻿namespace MinesweeperLib.Tests.Helpers
 {
 	using System;
 	using System.Collections.Generic;
@@ -7,6 +6,7 @@ namespace MinesweeperLib.Tests.Helpers
 
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+	using MinesweeperLib.Common;
 	using MinesweeperLib.Helpers;
 
 	[TestClass]
@@ -23,7 +23,7 @@ namespace MinesweeperLib.Tests.Helpers
 		[TestMethod]
 		public void OutOfBoundCoordinate()
 		{
-			IEnumerable<Coordinate> coordinates = Randomizer.GetRandomCoordinates(new Size(1, 2), 3);
+			Randomizer.GetRandomCoordinates(new Size(1, 2), 3);
 		}
 
 		[TestMethod]

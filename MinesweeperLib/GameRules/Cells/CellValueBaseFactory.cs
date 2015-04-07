@@ -1,7 +1,8 @@
-namespace MinesweeperLib.Cells
+namespace MinesweeperLib.GameRules.Cells
 {
 	using System.Collections.Generic;
 
+	using MinesweeperLib.Common;
 	using MinesweeperLib.Helpers;
 
 	public class CellValueBaseFactory : ICellValueBaseFactory

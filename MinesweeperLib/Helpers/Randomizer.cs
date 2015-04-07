@@ -3,6 +3,8 @@
 	using System;
 	using System.Collections.Generic;
 
+	using MinesweeperLib.Common;
+
 	public static class Randomizer
 	{
 		private static readonly Random Random = new Random();

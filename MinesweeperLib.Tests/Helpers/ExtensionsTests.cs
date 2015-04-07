@@ -1,8 +1,8 @@
-﻿
-namespace MinesweeperLib.Tests.Helpers
+﻿namespace MinesweeperLib.Tests.Helpers
 {
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+	using MinesweeperLib.Common;
 	using MinesweeperLib.Helpers;
 
 	[TestClass]

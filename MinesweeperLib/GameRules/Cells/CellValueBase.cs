@@ -1,4 +1,4 @@
-namespace MinesweeperLib.Cells
+namespace MinesweeperLib.GameRules.Cells
 {
 	public abstract class CellValueBase
 	{	
@@ -6,11 +6,13 @@ namespace MinesweeperLib.Cells
 		{
 		}
 
-		public abstract int? NumberOfBombAround { get; }
+		public abstract byte? NumberOfBombAround { get; }
 
 		public bool IsBomb
 		{
 			get { return this is BombCellValue; }
 		}
+
+		public abstract string GetStateRepresentation();
 	}
 }

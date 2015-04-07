@@ -1,4 +1,4 @@
-namespace MinesweeperLib.Cells
+namespace MinesweeperLib.GameRules.Cells
 {
 	using System;
 
@@ -16,9 +16,14 @@ namespace MinesweeperLib.Cells
 			this.numberOfBombAround = numberOfBombAround;
 		}
 
-		public override int? NumberOfBombAround
+		public override byte? NumberOfBombAround
 		{
 			get { return this.numberOfBombAround; }
+		}
+
+		public override string GetStateRepresentation()
+		{
+			return this.numberOfBombAround.ToString();
 		}
 	}
 }

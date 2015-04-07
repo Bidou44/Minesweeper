@@ -3,6 +3,8 @@
 	using System;
 	using System.Collections.Generic;
 
+	using MinesweeperLib.Common;
+
 	public static class Extensions
 	{
 		public static bool InInterval<T>(this T value, T lowerBoundInclusive, T upperBoundExclusive) where T : IComparable
@@ -28,6 +30,11 @@
 		public static bool IsNotBetween(this Size size, Size minSize, Size maxSize)
 		{
 			return !size.IsBetween(minSize, maxSize);
+		}
+
+		public static bool AtLeast(this Size size, Size minSize)
+		{
+			return size.Width >= minSize.Width && size.Height >= minSize.Height;
 		}
 
 		public static IEnumerable<Coordinate> GetAllNeighbors(this Coordinate coordinate)

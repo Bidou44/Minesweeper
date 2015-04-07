@@ -53,10 +53,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Cells\CellValueBaseFactoryTests.cs" />
-    <Compile Include="GameTests.cs" />
-    <Compile Include="GameCreatorTests.cs" />
-    <Compile Include="BoardTests.cs" />
+    <Compile Include="GameRules\Cells\CellValueBaseFactoryTests.cs" />
+    <Compile Include="Configurations\GameLevelTests.cs" />
+    <Compile Include="GameRules\GameSerializerTests.cs" />
+    <Compile Include="GameRules\GameTests.cs" />
+    <Compile Include="GameRules\GameCreatorTests.cs" />
+    <Compile Include="GameRules\BoardTests.cs" />
     <Compile Include="Helpers\RandomizerTests.cs" />
     <Compile Include="Helpers\ExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

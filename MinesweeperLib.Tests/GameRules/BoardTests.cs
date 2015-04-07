@@ -1,13 +1,14 @@
-﻿namespace MinesweeperLib.Tests
+﻿namespace MinesweeperLib.Tests.GameRules
 {
 	using System;
 	using System.Collections.Generic;
-	using System.Linq;
 
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-	using MinesweeperLib.Cells;
+	using MinesweeperLib.Common;
 	using MinesweeperLib.Configurations;
+	using MinesweeperLib.GameRules;
+	using MinesweeperLib.GameRules.Cells;
 	using MinesweeperLib.Helpers;
 
 	[TestClass]
@@ -16,7 +17,10 @@
 		[TestMethod]
 		public void BoardSize_InsideBoard()
 		{
+			// Arrange & Act
 			Board board = this.CreateBoard(GameLevel.Easy);
+
+			// Assert
 			Assert.AreEqual(10, board.Size.Width);
 			Assert.AreEqual(10, board.Size.Height);
 		}
@@ -24,8 +28,13 @@
 		[TestMethod]
 		public void BoardSize_MaxValue()
 		{
+			// Arrange
 			Board board = this.CreateBoard(GameLevel.Medium);
+
+			// Act
 			Cell value = board[board.Size.Width - 1, board.Size.Height - 1];
+
+			// Assert
 			Assert.IsNotNull(value);
 		}
 
@@ -33,7 +42,10 @@
 		[TestMethod]
 		public void BoardSize_OutsideBoard()
 		{
+			// Arrange
 			Board board = this.CreateBoard(GameLevel.Hard);
+
+			// Act
 			Cell value = board[board.Size.Width, board.Size.Height];
 		}
 

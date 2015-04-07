@@ -1,4 +1,4 @@
-namespace MinesweeperLib
+namespace MinesweeperLib.GameRules
 {
 	public enum GameState
 	{
