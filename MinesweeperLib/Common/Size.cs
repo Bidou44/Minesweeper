@@ -11,31 +11,25 @@
 		{
 			if (width < 0)
 			{
-				throw new ArgumentException("The width must be a positive number", "width");
+				throw new ArgumentException("The width must be a positive number", nameof(width));
 			}
 
 			if (height < 0)
 			{
-				throw new ArgumentException("The height must be a positive number", "height");
+				throw new ArgumentException("The height must be a positive number", nameof(height));
 			}
 
 			this.width = width;
 			this.height = height;
 		}
 
-		public int Width
-		{
-			get { return this.width; }
-		}
+		public int Width => this.width;
 
-		public int Height
-		{
-			get { return this.height; }
-		}
+        public int Height => this.height;
 
-		public override string ToString()
+        public override string ToString()
 		{
-			return String.Format("{0}x{1}", this.width, this.height);
+			return $"{this.width}x{this.height}";
 		}
 	}
 }

@@ -8,11 +8,8 @@ namespace MinesweeperLib.GameRules.Cells
 
 		public abstract byte? NumberOfBombAround { get; }
 
-		public bool IsBomb
-		{
-			get { return this is BombCellValue; }
-		}
+		public bool IsBomb => this is BombCellValue;
 
-		public abstract string GetStateRepresentation();
+        public abstract string GetStateRepresentation();
 	}
 }

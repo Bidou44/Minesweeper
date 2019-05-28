@@ -37,12 +37,9 @@
 			}
 		}
 
-		public Cell this[Coordinate coord]
-		{
-			get { return this[coord.XCoord, coord.YCoord]; }
-		}
+		public Cell this[Coordinate coord] => this[coord.XCoord, coord.YCoord];
 
-		public GameConfiguration GameConfiguration { get; private set; }
+        public GameConfiguration GameConfiguration { get; }
 
 		public Size Size { get; private set; }
 

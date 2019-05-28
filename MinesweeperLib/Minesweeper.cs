@@ -21,12 +21,9 @@
 			this.Initialize();
 		}
 
-		public GameState GameState
-		{
-			get { return this.game.GameState; }
-		}
+		public GameState GameState => this.game.GameState;
 
-		public void Play(Coordinate coord)
+        public void Play(Coordinate coord)
 		{
 			this.game.Play(coord);
 		}

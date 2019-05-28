@@ -14,7 +14,7 @@
 			int numberOfCells = gameSize.Width * gameSize.Height;
 			if (numberOfCoordinate > numberOfCells)
 			{
-				throw new ArgumentException("The game is too small", "numberOfCoordinate");
+				throw new ArgumentException("The game is too small", nameof(numberOfCoordinate));
 			}
 
 			HashSet<Coordinate> coordinates = new HashSet<Coordinate>();

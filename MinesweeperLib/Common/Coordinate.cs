@@ -4,33 +4,21 @@
 
 	public struct Coordinate
 	{
-		private readonly int xCoord;
-		private readonly int yCoord;
-
-		public Coordinate(int xCoord, int yCoord)
+        public Coordinate(int xCoord, int yCoord)
 		{
-			this.xCoord = xCoord;
-			this.yCoord = yCoord;
+			this.XCoord = xCoord;
+			this.YCoord = yCoord;
 		}
 
-		public Coordinate Empty
-		{
-			get { return new Coordinate(0, 0); }
-		}
+		public Coordinate Empty => new Coordinate(0, 0);
 
-		public int XCoord
-		{
-			get { return this.xCoord; }
-		}
+        public int XCoord { get; }
 
-		public int YCoord
-		{
-			get { return this.yCoord; }
-		}
+        public int YCoord { get; }
 
-		public Coordinate Add(int x, int y)
+        public Coordinate Add(int x, int y)
 		{
-			return new Coordinate(this.xCoord + x, this.yCoord + y);
+			return new Coordinate(this.XCoord + x, this.YCoord + y);
 		}
 
 		public static bool operator ==(Coordinate left, Coordinate right)
@@ -58,13 +46,13 @@
 		{
 			unchecked
 			{
-				return (this.yCoord * 397) ^ this.xCoord;
+				return (this.YCoord * 397) ^ this.XCoord;
 			}
 		}
 
 		public override string ToString()
 		{
-			return String.Format("({0};{1})", this.xCoord, this.yCoord);
+			return $"({this.XCoord};{this.YCoord})";
 		}
 	}
 }

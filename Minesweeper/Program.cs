@@ -64,19 +64,17 @@
 			string[] coords = input.Split(';', ',');
 			if (coords.Length == 2)
 			{
-				int xCoord = 0;
-				if (Int32.TryParse(coords[0].Trim(), out xCoord))
+                if (Int32.TryParse(coords[0].Trim(), out var xCoord))
 				{
-					int yCoord = 0;
-					if (Int32.TryParse(coords[1].Trim(), out yCoord))
+                    if (Int32.TryParse(coords[1].Trim(), out var yCoord))
 					{
-						Coordinate coord = new Coordinate(xCoord, yCoord);
-						return coord;
+						Coordinate coordinate = new Coordinate(xCoord, yCoord);
+						return coordinate;
 					}
 				}
 			}
 
-			throw new ArgumentException("Invalid coordinate", "input");
+			throw new ArgumentException("Invalid coordinate", nameof(input));
 		}
 	}
 }

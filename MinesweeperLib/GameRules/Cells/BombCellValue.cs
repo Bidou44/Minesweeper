@@ -6,12 +6,9 @@ namespace MinesweeperLib.GameRules.Cells
 		{
 		}
 
-		public override byte? NumberOfBombAround
-		{
-			get { return null; }
-		}
+		public override byte? NumberOfBombAround => null;
 
-		public override string GetStateRepresentation()
+        public override string GetStateRepresentation()
 		{
 			return "B";
 		}

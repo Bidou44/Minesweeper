@@ -62,7 +62,7 @@
 			HashSet<Coordinate> coordinates = new HashSet<Coordinate>
 				                                  {
 					                                  new Coordinate(1, 0), new Coordinate(2, 0), new Coordinate(1, 1), new Coordinate(1, 2),
-				                                    new Coordinate(3, 2), new Coordinate(3, 1), new Coordinate(2, 2), new Coordinate(3, 0)
+                                                      new Coordinate(3, 2), new Coordinate(3, 1), new Coordinate(2, 2), new Coordinate(3, 0)
 				                                  };
 			Coordinate current = new Coordinate(2, 1);
 			CellValueBaseFactory cellValueBaseFactory = new CellValueBaseFactory(coordinates);

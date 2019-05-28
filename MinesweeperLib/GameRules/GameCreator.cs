@@ -22,7 +22,7 @@
 
 			if (gameConfiguration.Level.GameSize.IsNotBetween(minGameSize, maxGameSize))
 			{
-				string message = string.Format("The game size must be between {0} and {1}", minGameSize, maxGameSize);
+				string message = $"The game size must be between {minGameSize} and {maxGameSize}";
 				throw new ArgumentException(message);
 			}
 

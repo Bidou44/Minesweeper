@@ -19,16 +19,13 @@
 			this.GameState = GameState.Playing;
 		}
 
-		public GameConfiguration GameConfiguration
-		{
-			get { return this.Board.GameConfiguration; }
-		}
+		public GameConfiguration GameConfiguration => this.Board.GameConfiguration;
 
-		public GameState GameState { get; private set; }
+        public GameState GameState { get; private set; }
 
-		public IBoard Board { get; private set; }
+		public IBoard Board { get; }
 
-		public IGameSerializer GameSerializer { get; private set; }
+		public IGameSerializer GameSerializer { get; }
 
 		public static IGame CreateGame(ApplicationConfiguration appConfig, GameConfiguration gameConfiguration, IEnumerable<Coordinate> bombCoordinates)
 		{

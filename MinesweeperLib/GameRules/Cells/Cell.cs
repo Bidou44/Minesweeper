@@ -15,9 +15,9 @@
 		{
 		}
 
-		public Coordinate Coordinate { get; private set; }
+		public Coordinate Coordinate { get; }
 
-		public CellValueBase CellValue { get; private set; }
+		public CellValueBase CellValue { get; }
 
 		public bool IsPlayed { get; internal set; }
 	}
